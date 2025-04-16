@@ -17,7 +17,7 @@ function displayDetails(response) {
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
-function search(event) {
+function handelSearch(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#search-input");
   let city = searchInputElement.value;
@@ -26,6 +26,37 @@ function search(event) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayDetails);
+}
+
+// Display the forcast
+function displayForecast() {
+  //create an array of days
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  //create a varible (empty first)
+  let forecastHTml = "";
+
+  //loop through each day one at a time
+  //put all the forecast HTML that we have to inject eventually
+  days.forEach(function (day) {
+    forecastHTml =
+      forecastHTml +
+      ` 
+      <div class="weather-forecast-day-info">
+            <div class="weather-forecast-date">${day}</div>
+            <div class="weather-forecast-icon">☀️</div>
+            <div class="weather-forecast-temperatures">
+              <div class="weather-forecast-temperature">20°</div>
+              <div class="weather-forecast-temperature">9°</div>
+            </div>
+          </div> 
+     `;
+  });
+
+  //when the loop is over
+  //inject the html inside innerHTML
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHTml;
 }
 
 function formatDate(date) {
@@ -56,9 +87,10 @@ function formatDate(date) {
 }
 
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", handelSearch);
 
 let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
 currentDateELement.innerHTML = formatDate(currentDate);
+displayForecast();

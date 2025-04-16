@@ -82,6 +82,7 @@ main {
 .current-weather {
   display: flex;
   justify-content: space-between;
+  border-bottom: 3px solid #f9f7fe;
 }
 
 .current-city {
@@ -120,6 +121,36 @@ main {
   position: relative;
   top: -38px;
   color: #830037;
+}
+
+.weather-forecast {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.weather-forecast-date {
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.weather-forecast-icon {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.weather-forecast-temperatures {
+  text-align: center;
+  color: #830037;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.weather-forecast-temperature {
+  padding: 0 10px;
 }
 
 footer {
